@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioPorData" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="291f5ef7-8fde-4ca8-a31a-73def0736da8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Anve"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="dtInicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFim" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     movimento.`cpregistro` AS movimento_cpregistro,
+     movimento.`cecodigoxml` AS movimento_cecodigoxml,
+     movimento.`cecodcli` AS movimento_cecodcli,
+     movimento.`cecodpro` AS movimento_cecodpro,
+     movimento.`qtduntotal` AS movimento_qtduntotal,
+     movimento.`valorun` AS movimento_valorun,
+     movimento.`valortotal` AS movimento_valortotal,
+     movimento.`tipomovimento` AS movimento_tipomovimento,
+     movimento.`unproduto` AS movimento_unproduto,
+     movimento.`estoquenoregistro` AS movimento_estoquenoregistro,
+     movimento.`dtmovimento` AS movimento_dtmovimento,
+     movimento.`cfop` AS movimento_cfop,
+     produtos.`cpcodpro` AS produtos_cpcodpro,
+     produtos.`descricao` AS produtos_descricao,
+     produtos.`categoria` AS produtos_categoria,
+     produtos.`marca` AS produtos_marca,
+     produtos.`unidade` AS produtos_unidade,
+     produtos.`qtdun` AS produtos_qtdun,
+     produtos.`estoque` AS produtos_estoque,
+     produtos.`codigofabrica` AS produtos_codigofabrica
+FROM
+     `produtos` produtos INNER JOIN `movimento` movimento ON produtos.`codigofabrica` = movimento.`cecodpro`
+WHERE
+	movimento.`dtmovimento` between $P{dtInicio} AND $P{dtFim}]]>
+	</queryString>
+	<field name="movimento_cpregistro" class="java.lang.Integer"/>
+	<field name="movimento_cecodigoxml" class="java.lang.Integer"/>
+	<field name="movimento_cecodcli" class="java.lang.Integer"/>
+	<field name="movimento_cecodpro" class="java.lang.Long"/>
+	<field name="movimento_qtduntotal" class="java.lang.Integer"/>
+	<field name="movimento_valorun" class="java.lang.Float"/>
+	<field name="movimento_valortotal" class="java.lang.Float"/>
+	<field name="movimento_tipomovimento" class="java.lang.String"/>
+	<field name="movimento_unproduto" class="java.lang.String"/>
+	<field name="movimento_estoquenoregistro" class="java.lang.Integer"/>
+	<field name="movimento_dtmovimento" class="java.sql.Date"/>
+	<field name="movimento_cfop" class="java.lang.Integer"/>
+	<field name="produtos_cpcodpro" class="java.math.BigInteger"/>
+	<field name="produtos_descricao" class="java.lang.String"/>
+	<field name="produtos_categoria" class="java.lang.String"/>
+	<field name="produtos_marca" class="java.lang.String"/>
+	<field name="produtos_unidade" class="java.lang.String"/>
+	<field name="produtos_qtdun" class="java.lang.Integer"/>
+	<field name="produtos_estoque" class="java.lang.Integer"/>
+	<field name="produtos_codigofabrica" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="399" y="49" width="154" height="19" uuid="bef650f7-6e23-41cc-add9-95eb57d35c25">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[por data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="28" width="310" height="16" uuid="527aa6ff-152c-436e-a987-d5e3ddc1343b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Comercio de Bebidas Trabalho de Graduação LTDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="310" height="16" uuid="2f1cd5f9-8e75-4d12-82ae-78d8d6163f3a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Endereço: Avenida Paraná, nº 1122, Centro, Joaquim Távora - PR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="61" width="310" height="16" uuid="5adbc9a6-e4f9-42a6-adf4-2fefae16fc4c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Telefone: (43) 3559-1122 | E-mail: comerciodebebidas@tg.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="23" width="243" height="26" uuid="05a5569e-415f-4a1a-8c18-b1ce9b925f6a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Movimento de Produtos]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="abdde623-3eaf-419b-b291-db61158df87f"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="df6230a5-c852-4035-a97b-704a0aa343ec"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="18" uuid="ac26d66b-e2b8-4c22-9a0d-f400a74fda96"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="200" y="2" width="100" height="16" forecolor="#666666" uuid="5e4dc524-84bb-4c61-97ca-8afc31834ad2"/>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="21" width="555" height="1" uuid="750d09b8-e5f2-4680-bc35-5564b31fd721"/>
+			</line>
+			<line>
+				<reportElement x="1" y="83" width="555" height="1" uuid="eff72181-4e98-44fe-bfc7-12e2de1956be"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25">
+			<staticText>
+				<reportElement x="0" y="0" width="58" height="20" uuid="1a0efd2e-2dd8-4cfc-a6f9-59095b04900b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cod. Prod]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="0" width="115" height="20" uuid="4a5467a4-67b0-415c-b91e-df25bff5aebe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="0" width="42" height="20" uuid="d347071f-52cd-4e8d-8400-77a109885ae1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[UN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="1" width="42" height="20" uuid="0b148972-3668-4a10-8e90-c9222b6f4aa1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Qtd / Cx]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="1" width="42" height="20" uuid="c6f8aee0-310a-4228-ab88-62e12bea855d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[XML]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="1" width="74" height="20" uuid="8cfa4ffc-354f-4cc5-a76e-ca9130ecb632"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Dt Movimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="1" width="74" height="20" uuid="14f63e32-358c-4d30-8898-87f1f6ba445d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Movimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="0" width="42" height="20" uuid="062ba37e-7d9a-4f2d-96b3-b6e2596ee578"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[QTD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="0" width="54" height="20" uuid="a063a3f5-0a8a-403b-a42e-63e5c6e4b629"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Estoque]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="58" height="15" uuid="25093c63-33d3-4de0-8e15-3fc788dc9b7e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produtos_cpcodpro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="58" y="0" width="115" height="15" uuid="d3d5af9c-db9f-476d-976d-ce80fb86be11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produtos_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="415" y="1" width="42" height="15" uuid="ac63781c-b807-47c5-a110-77ace9d4911f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimento_unproduto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="173" y="2" width="42" height="15" uuid="c6bce467-2f58-4f8e-93f1-90c1528bfc2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produtos_qtdun}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="215" y="1" width="42" height="15" uuid="3f5bdde5-254f-438e-b414-275521423b41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimento_cecodigoxml}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="257" y="2" width="84" height="15" uuid="b57b4a75-3903-4fd3-a819-8435d8709c6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimento_dtmovimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="341" y="2" width="74" height="15" uuid="79ca6add-8c39-4572-87fb-f2315d266491"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimento_tipomovimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="457" y="1" width="42" height="15" uuid="4b6e0b57-589b-436f-aa30-0de91a880461"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimento_qtduntotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="499" y="1" width="54" height="15" uuid="b62bee20-8e58-48b1-9508-87f808ea28a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimento_estoquenoregistro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioContagens" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c963d80c-67dc-40b0-8d46-0d255e86815d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Anve"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="codigoContagem" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     itenscontagens.`codigo` AS itenscontagens_codigo,
+     itenscontagens.`fkcodigocontagem` AS itenscontagens_fkcodigocontagem,
+     itenscontagens.`codigoproduto` AS itenscontagens_codigoproduto,
+     itenscontagens.`descricaoproduto` AS itenscontagens_descricaoproduto,
+     itenscontagens.`estoque` AS itenscontagens_estoque,
+     itenscontagens.`contagem` AS itenscontagens_contagem
+FROM
+     `itenscontagens` itenscontagens
+WHERE
+itenscontagens.`fkcodigocontagem` = $P{codigoContagem}]]>
+	</queryString>
+	<field name="itenscontagens_codigo" class="java.lang.Integer"/>
+	<field name="itenscontagens_fkcodigocontagem" class="java.lang.Long"/>
+	<field name="itenscontagens_codigoproduto" class="java.lang.Integer"/>
+	<field name="itenscontagens_descricaoproduto" class="java.lang.String"/>
+	<field name="itenscontagens_estoque" class="java.lang.Integer"/>
+	<field name="itenscontagens_contagem" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="26" width="310" height="16" uuid="06dda7e7-b72b-44c6-a2c0-41f1c330b634">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Comercio de Bebidas Trabalho de Graduação LTDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="42" width="310" height="16" uuid="bffb7f11-f1f6-4d85-bc3f-0b242b0949bd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Endereço: Avenida Paraná, nº 1122, Centro, Joaquim Távora - PR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="310" height="16" uuid="b4c48366-0e42-4994-9243-7711a5e67074">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Telefone: (43) 3559-1122 | E-mail: comerciodebebidas@tg.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="24" width="240" height="61" uuid="97302101-5187-49d9-8df1-946f94128a78">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Espelho da contagem de estoque]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="6da546e2-3fb5-4139-b184-dfd2eb9e6b53"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="61ecc74e-f5c7-4f09-871e-5585abe55c4a"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="18" uuid="a189c6c0-c1cb-45cc-b9f0-549a16f4c981"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="200" y="2" width="100" height="16" forecolor="#666666" uuid="9e5c06c1-ec62-4084-93fb-8cd575ffe71d"/>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="21" width="555" height="1" uuid="898b5b9d-f9f7-4fa5-a06e-bc7fc7ac9b47"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="8" width="100" height="15" uuid="521b5df4-9186-4239-a4c8-cdd3097f5f78"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cod. Contagem]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="24" width="555" height="1" uuid="a33ab523-8850-4404-be06-15577550ed32"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="100" y="9" width="84" height="15" uuid="3019b8a1-13fd-4465-a5f8-cd17ca455c39"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cod. Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="9" width="115" height="15" uuid="bb39f193-b96f-4a94-9925-fa126458f089"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="433" y="8" width="60" height="15" uuid="32739f03-2e9b-407b-856c-b3cd40cf0973"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Estoque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="493" y="8" width="60" height="15" uuid="c0cec72d-7070-4ac1-a637-27116d262ecf"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Contagem]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="33" width="555" height="1" uuid="c3da641f-889d-454e-b570-65e5c02ca2f8"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="1" width="100" height="24" uuid="93ca59c0-35e5-4293-9f2d-9fabefde14f3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itenscontagens_fkcodigocontagem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="100" y="2" width="84" height="24" uuid="957a9c0a-42be-4893-b355-c23430f98843"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itenscontagens_codigoproduto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="200" y="2" width="218" height="24" uuid="a71cca67-ad04-415c-b49b-0c18132d34dc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itenscontagens_descricaoproduto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="433" y="2" width="60" height="24" uuid="bc4b5b30-f52b-4d2c-abe2-fb6f09bd38da"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itenscontagens_estoque}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="493" y="1" width="60" height="24" uuid="e36199e0-c32f-4968-b1af-61206dafd1c2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itenscontagens_contagem}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="89852d38-2660-4866-9b93-953b57695afd"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

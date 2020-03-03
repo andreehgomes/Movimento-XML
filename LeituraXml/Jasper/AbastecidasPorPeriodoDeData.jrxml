@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AbastecidasPorPeriodoDeData" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe732d89-713f-4a5c-beba-f26befc11f44">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="DT_INICIO" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DT_FIM" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     veiculos.`codveiculo` AS veiculos_codveiculo,
+     veiculos.`placa` AS veiculos_placa,
+     veiculos.`modelo` AS veiculos_modelo,
+     veiculos.`marca` AS veiculos_marca,
+     veiculos.`ano` AS veiculos_ano,
+     veiculos.`mediacombustivel` AS veiculos_mediacombustivel,
+     abastecimentos.`codigo` AS abastecimentos_codigo,
+     abastecimentos.`numeronf` AS abastecimentos_numeronf,
+     abastecimentos.`dataemissao` AS abastecimentos_dataemissao,
+     abastecimentos.`datalancamento` AS abastecimentos_datalancamento,
+     abastecimentos.`combustivel` AS abastecimentos_combustivel,
+     abastecimentos.`qtdlitros` AS abastecimentos_qtdlitros,
+     abastecimentos.`valorlitro` AS abastecimentos_valorlitro,
+     abastecimentos.`valortotal` AS abastecimentos_valortotal,
+     abastecimentos.`fkplaca` AS abastecimentos_fkplaca,
+     abastecimentos.`descricaoveiculo` AS abastecimentos_descricaoveiculo,
+     abastecimentos.`motorista` AS abastecimentos_motorista,
+     abastecimentos.`kmabastecida` AS abastecimentos_kmabastecida
+FROM
+     `veiculos` veiculos INNER JOIN `abastecimentos` abastecimentos ON veiculos.`placa` = abastecimentos.`fkplaca`
+WHERE abastecimentos.`datalancamento`
+BETWEEN $P{DT_INICIO} AND $P{DT_FIM}
+
+ORDER BY abastecimentos.`numeronf`
+
+
+]]>
+	</queryString>
+	<field name="veiculos_codveiculo" class="java.lang.Integer"/>
+	<field name="veiculos_placa" class="java.lang.String"/>
+	<field name="veiculos_modelo" class="java.lang.String"/>
+	<field name="veiculos_marca" class="java.lang.String"/>
+	<field name="veiculos_ano" class="java.lang.Integer"/>
+	<field name="veiculos_mediacombustivel" class="java.lang.Float"/>
+	<field name="abastecimentos_codigo" class="java.lang.Integer"/>
+	<field name="abastecimentos_numeronf" class="java.lang.Integer"/>
+	<field name="abastecimentos_dataemissao" class="java.sql.Date"/>
+	<field name="abastecimentos_datalancamento" class="java.sql.Date"/>
+	<field name="abastecimentos_combustivel" class="java.lang.String"/>
+	<field name="abastecimentos_qtdlitros" class="java.lang.Float"/>
+	<field name="abastecimentos_valorlitro" class="java.lang.Float"/>
+	<field name="abastecimentos_valortotal" class="java.lang.Float"/>
+	<field name="abastecimentos_fkplaca" class="java.lang.String"/>
+	<field name="abastecimentos_descricaoveiculo" class="java.lang.String"/>
+	<field name="abastecimentos_motorista" class="java.lang.String"/>
+	<field name="abastecimentos_kmabastecida" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="289" height="33" uuid="58af8c01-2906-442a-83c1-e7ea20e655ba"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Abastecidas Lançadas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="27" height="15" uuid="af59b79f-d612-4d26-9f86-2e600b943110"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nº NF]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="ae459d51-52f5-401b-bcf4-2993bfcc2cf3"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="32" y="19" width="43" height="15" uuid="6520d9c7-4575-4a1a-89ee-41e013adb318"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[PLACA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="80" y="19" width="109" height="15" uuid="5bb9f548-0279-4840-bb78-11520fe179e4"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[VEÍCULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="192" y="19" width="43" height="15" uuid="f683fb53-4315-45de-b2a0-17f9e768c0bd"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[KM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="238" y="19" width="43" height="15" uuid="4fc5d7f2-78fc-413f-9f59-0690316eae76"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[QTD LITROS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="287" y="20" width="43" height="15" uuid="f51be82f-7121-492c-91da-0e017bc7ef78"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="336" y="19" width="37" height="15" uuid="bd43bbaa-c5ef-45d2-a712-5c0dabba1c20"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[EMISSÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="447" y="20" width="66" height="15" uuid="95ef2485-d591-4013-8402-fd1d9e8900da"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[MOTORISTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="513" y="20" width="37" height="15" uuid="3fde5ef9-0480-4e5a-b210-eb21f066f231"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[MÉDIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="384" y="20" width="63" height="15" uuid="5599b929-9f07-47f5-9ed5-e9c995cbe66f"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[LANÇAMENTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="491c63b5-1cfa-4342-b3ed-8bc31c20259a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="27" height="15" uuid="c2f7f7c8-4acf-448e-bb15-2f89e9aad8a5"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_numeronf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="32" y="1" width="43" height="15" uuid="c1f1d4d3-1d5f-4eb1-87fb-098d4fcf1d98"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_fkplaca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="80" y="2" width="109" height="15" uuid="2eeba61d-7a98-42ad-b97d-2b46edb17d17"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_descricaoveiculo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="192" y="0" width="43" height="15" uuid="1615c090-ba03-4456-94f8-5305345604f2"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_kmabastecida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="238" y="2" width="43" height="15" uuid="22402705-f9aa-4ab4-ac9a-d7e6054063ef"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_qtdlitros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="287" y="0" width="43" height="15" uuid="c065348d-96fb-439d-b9cc-e8ed63e67548"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_valortotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="336" y="0" width="37" height="15" uuid="e675fbbb-dd40-447c-9b53-91cefaad00b3"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_dataemissao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="447" y="0" width="66" height="15" uuid="50d4e24e-e208-4e38-9e4d-0236de249668"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_motorista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="513" y="2" width="37" height="15" uuid="df1b37c6-bbdc-4eac-9bce-41dd842a8f9b"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veiculos_mediacombustivel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="394" y="1" width="33" height="15" uuid="1f72dbe3-68c5-438b-927a-494d9a00cff9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{abastecimentos_datalancamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="2ddfcbc2-8c49-4742-9b4d-469f4d2ed72b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="03636748-c06c-4550-a54a-955ae27d40f9"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="165fcf39-40b9-48fc-8630-ea67f4cf9397"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="f844489f-e153-488b-9a57-b172166959bd"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

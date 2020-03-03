@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ComprovanteOs" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18922812-5094-438c-b045-7858521446d2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<subDataset name="dataset1" uuid="378035e4-cc59-44f8-a900-002390766fa2"/>
+	<parameter name="NumeroOs" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TOTAL_VALOR_OS" class="java.lang.Float">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     osveiculos.`codigo` AS osveiculos_codigo,
+     osveiculos.`fkplaca` AS osveiculos_fkplaca,
+     osveiculos.`dtcriacao` AS osveiculos_dtcriacao,
+     osveiculos.`usucriacao` AS osveiculos_usucriacao,
+     osveiculos.`dtalteracao` AS osveiculos_dtalteracao,
+     osveiculos.`usualteracao` AS osveiculos_usualteracao,
+     osveiculos.`status` AS osveiculos_status,
+     osveiculos.`fkfornecedor` AS osveiculos_fkfornecedor,
+     osveiculos.`descricaoservico` AS osveiculos_descricaoservico,
+     pecasosveiculos.`codigo` AS pecasosveiculos_codigo,
+     pecasosveiculos.`fkcodigoos` AS pecasosveiculos_fkcodigoos,
+     pecasosveiculos.`fkfornecedor` AS pecasosveiculos_fkfornecedor,
+     pecasosveiculos.`descricaopeca` AS pecasosveiculos_descricaopeca,
+     pecasosveiculos.`qtdpeca` AS pecasosveiculos_qtdpeca,
+     pecasosveiculos.`valorpeca` AS pecasosveiculos_valorpeca,
+     pecasosveiculos.`dtinclusao` AS pecasosveiculos_dtinclusao,
+     veiculos.`codveiculo` AS veiculos_codveiculo,
+     veiculos.`placa` AS veiculos_placa,
+     veiculos.`modelo` AS veiculos_modelo,
+     veiculos.`marca` AS veiculos_marca,
+     veiculos.`ano` AS veiculos_ano,
+     fornecedor.`codigo` AS fornecedor_codigo,
+     fornecedor.`nome` AS fornecedor_nome
+
+FROM
+     `osveiculos` osveiculos INNER JOIN `pecasosveiculos` pecasosveiculos ON osveiculos.`codigo` = pecasosveiculos.`fkcodigoos`
+     INNER JOIN `veiculos` veiculos ON osveiculos.`fkplaca` = veiculos.`placa`
+     INNER JOIN `fornecedor` fornecedor ON pecasosveiculos.`fkfornecedor` = fornecedor.`codigo`
+
+WHERE
+     osveiculos.`codigo` = $P{NumeroOs}]]>
+	</queryString>
+	<field name="osveiculos_codigo" class="java.lang.Integer"/>
+	<field name="osveiculos_fkplaca" class="java.lang.String"/>
+	<field name="osveiculos_dtcriacao" class="java.sql.Date"/>
+	<field name="osveiculos_usucriacao" class="java.lang.String"/>
+	<field name="osveiculos_dtalteracao" class="java.sql.Date"/>
+	<field name="osveiculos_usualteracao" class="java.lang.String"/>
+	<field name="osveiculos_status" class="java.lang.String"/>
+	<field name="osveiculos_fkfornecedor" class="java.lang.Integer"/>
+	<field name="osveiculos_descricaoservico" class="java.lang.String"/>
+	<field name="pecasosveiculos_codigo" class="java.lang.Integer"/>
+	<field name="pecasosveiculos_fkcodigoos" class="java.lang.Integer"/>
+	<field name="pecasosveiculos_fkfornecedor" class="java.lang.Integer"/>
+	<field name="pecasosveiculos_descricaopeca" class="java.lang.String"/>
+	<field name="pecasosveiculos_qtdpeca" class="java.lang.Integer"/>
+	<field name="pecasosveiculos_valorpeca" class="java.lang.Float"/>
+	<field name="pecasosveiculos_dtinclusao" class="java.sql.Date"/>
+	<field name="veiculos_codveiculo" class="java.lang.Integer"/>
+	<field name="veiculos_placa" class="java.lang.String"/>
+	<field name="veiculos_modelo" class="java.lang.String"/>
+	<field name="veiculos_marca" class="java.lang.String"/>
+	<field name="veiculos_ano" class="java.lang.Integer"/>
+	<field name="fornecedor_codigo" class="java.lang.Integer"/>
+	<field name="fornecedor_nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="f566c674-7128-4856-a07e-61a095c6eca6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordem de Serviço]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="475" y="0" width="78" height="22" forecolor="#000000" uuid="e114a882-84f3-40ce-81b5-53312ebe4565"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osveiculos_codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="415" y="0" width="36" height="22" forecolor="#000000" uuid="e2284878-7e15-4bb7-ad8a-f0bb86a06379"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[OS Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="266" y="20" width="36" height="26" forecolor="#000000" uuid="22032072-0b8a-4ffa-8343-d6ddbf5ef3e9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="326" y="22" width="78" height="24" forecolor="#000000" uuid="ba23f1ba-640d-4dba-b29d-fbb757af9dd0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osveiculos_dtcriacao}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="263" y="0" width="60" height="20" forecolor="#000000" uuid="05991f90-4f1d-4034-a9f5-1362986b2d41"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Criado por:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="323" y="0" width="80" height="20" forecolor="#000000" uuid="7b66a89e-d31d-4116-9cf2-835701d82829"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osveiculos_usucriacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="415" y="22" width="36" height="26" forecolor="#000000" uuid="4fdbc1b1-0246-451c-9319-4b4e5b1107cd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="475" y="24" width="78" height="22" forecolor="#000000" uuid="9c2a1cd3-caba-4c7d-add0-5bb66c7a8eae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osveiculos_status}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="59" width="551" height="1" uuid="0cf11103-b8b3-417b-92b3-0e3852a38c42"/>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="2" y="0" width="261" height="13" forecolor="#000000" uuid="ec49a6ca-6006-4d6f-916e-74cc8b506d85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[COMERCIO DE BEBIDAS NASSAR - BEBAGEL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="100" height="15" uuid="31f0075b-d4d3-4498-9388-1f8f65750f0c"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PLACA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="0" y="15" width="100" height="20" forecolor="#000000" uuid="6e71bf19-824f-458e-8f95-84cc5df2a5e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osveiculos_fkplaca}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="100" y="15" width="142" height="20" forecolor="#000000" uuid="13a15eee-705c-48ec-a691-15e269d88c9a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veiculos_modelo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="100" y="0" width="142" height="15" uuid="66bb8198-af80-48d1-bde7-c1fc2bbef98f"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VEÍCULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="2" y="38" width="98" height="15" forecolor="#000000" uuid="e4a5afd9-0c62-4fd0-94fd-b480985daa95"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Descrição do Serviço]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="2" y="49" width="553" height="4" forecolor="#000000" uuid="7b926543-8195-4a66-8203-5d5624fb3924"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{osveiculos_descricaoservico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="2" y="58" width="56" height="10" uuid="581ae1b4-149e-4ae7-aa5b-56bc60853da1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PLACA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="216" y="58" width="56" height="10" uuid="8eb9529b-b89f-4ff9-ac60-e4796463cc5b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[QTD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="302" y="58" width="56" height="10" uuid="57026266-e5d8-4de0-908a-48ebf25136e0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="363" y="58" width="52" height="10" uuid="8faf42b6-bfe2-47f7-aa69-261f683c028f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="423" y="58" width="52" height="10" uuid="2e0fd941-d5d5-402c-9da8-a9ab38580c62"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FORNECEDOR]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="2" y="56" width="551" height="1" uuid="16492386-afcf-4b95-9626-1ad2f9d810ff"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="2" y="70" width="551" height="1" uuid="ad3c6be2-b438-4a6f-91d1-e67bf9bad2a5"/>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="395" y="0" width="142" height="15" uuid="13096147-fad1-4a8f-a4c5-7901a240f8ab"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VALOR TOTAL DA OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="360" y="15" width="35" height="20" uuid="4dc79325-93d8-473e-bfcd-e3a6aa97d343"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[R$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="395" y="15" width="142" height="20" uuid="5f798d0b-25eb-4ca5-bc09-50e9adb1a8ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL_VALOR_OS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="0" y="1" width="216" height="13" forecolor="#000000" uuid="b00507df-9194-4dfb-bbd1-f7e45e4b9a4e"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pecasosveiculos_descricaopeca}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="216" y="1" width="47" height="13" forecolor="#000000" uuid="dcc50a1c-37dc-4329-b965-d264fee17d68"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pecasosveiculos_qtdpeca}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="313" y="1" width="47" height="13" forecolor="#000000" uuid="69ab5fc3-46f6-4468-b039-a9db5ced2fff"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pecasosveiculos_valorpeca}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="363" y="1" width="32" height="13" forecolor="#000000" uuid="db4b134e-4ea6-46c5-8dc4-c0e5fb0f2ae6"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pecasosveiculos_dtinclusao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SubTitle" x="415" y="1" width="123" height="13" forecolor="#000000" uuid="938da35f-4e34-4f02-9c1a-2b312e97a69b"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fornecedor_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="302" y="1" width="11" height="13" forecolor="#000000" uuid="b90dd5ef-f8a1-45e2-87d0-9fd306fdd066"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[R$]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="b7a10db9-f0c9-4e42-8db1-6e98682915bd"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="a028633e-ad48-41b8-9261-0cedc1267c49"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="f0f41594-7ecf-4505-8fee-5f5a42b03b88"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
